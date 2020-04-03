@@ -10,20 +10,20 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    var expectedPassword = "magic"
+    var expectedPassword = "password"
     var didValidatePassword: Bool = false
     var willShowKeyboard = false
     
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var popupBackground: UIView!
-    @IBOutlet weak var fieldStackView: UIStackView!
-    
     @IBOutlet weak var emailTextField: CustomTextField!
+    @IBOutlet weak var fieldStackView: UIStackView!
+    @IBOutlet weak var popupBackgroundView: UIView!
+
     @IBOutlet weak var passwordTextField: CustomTextField!
     @IBOutlet weak var logInButton: UIButton!
     
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,7 @@ class LogInViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
+        view.backgroundColor = .systemRed
         hideError(animate: false)
     }
     
@@ -41,8 +42,6 @@ class LogInViewController: UIViewController {
     
     private func login(email: String, password: String) {
         print("login() email: \(email), password: \(password)")
-        
-        
         if email.isEmpty {
             // TODO: Verify email is of correct format (hello@example.com)
             showError(message: "Error: Email cannot be empty.",
@@ -55,17 +54,12 @@ class LogInViewController: UIViewController {
                       animate: true)
             
             passwordTextField.becomeFirstResponder()
-            
-            
-            
-            
-            
         } else if password != expectedPassword {
             showError(message: "Error: Email and password do not match. Try again.",
                       forView: passwordTextField,
                       animate: true)
             passwordTextField.becomeFirstResponder()
-        } else { // good password
+        } else if password == expectedPassword { // good password
             self.hideError(animate: true)
             
             // Fake a web request delay before going to next screen
@@ -74,16 +68,14 @@ class LogInViewController: UIViewController {
                 self.didValidatePassword = true
                 self.view.endEditing(true)
             }
+        } else {
+            // FIXME: what should we do if we get here?
         }
     }
     
     private func loginIfValidFormInput() {
         guard let email = emailTextField.text,
             let password = passwordTextField.text else { return }
-        
-        
-        
-        
         login(email: email, password: password)
     }
     
@@ -101,11 +93,7 @@ class LogInViewController: UIViewController {
     
     private func hideError(animate: Bool) {
         errorLabel.text = ""
-        print(errorLabel)
         if animate {
-            
-            
-            
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 10, options: [.beginFromCurrentState], animations: {
                 self.errorLabel.isHidden = true
             })
