@@ -33,6 +33,9 @@ class LogInViewController: UIViewController {
         
         view.backgroundColor = .systemRed
         hideError(animate: false)
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     
@@ -131,5 +134,25 @@ class LogInViewController: UIViewController {
                 view.frame.origin.y = -endFrame.size.height / 2.0
             }
         }
+    }
+}
+
+// MARK: UITextFieldDelegate
+
+extension LogInViewController: UITextFieldDelegate {
+    
+    // Allows us to trigger an action when return is pressed, or move to
+    // the next field in a form
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            advanceToPasswordTextField()
+        } else if textField == passwordTextField {
+            loginIfValidFormInput()
+        }
+        return didValidatePassword
+    }
+    
+    private func advanceToPasswordTextField() {
+        passwordTextField.becomeFirstResponder()
     }
 }
