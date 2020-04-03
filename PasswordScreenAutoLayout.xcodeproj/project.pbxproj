@@ -13,6 +13,7 @@
 		BD57E91B222997C300C3D73E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD57E91A222997C300C3D73E /* Assets.xcassets */; };
 		BD57E91E222997C300C3D73E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD57E91C222997C300C3D73E /* LaunchScreen.storyboard */; };
 		BD57E9262229A3EF00C3D73E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD57E9252229A3EF00C3D73E /* LogInViewController.swift */; };
+		BD9CA03024379AF700DED04B /* ContentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9CA02F24379AF700DED04B /* ContentTableView.swift */; };
 		BDBE50EF224440350036AE69 /* UIView+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBE50EE224440350036AE69 /* UIView+Shake.swift */; };
 		BDFD03E2222AE66300DD898B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD03E1222AE66300DD898B /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,7 @@
 		BD57E91D222997C300C3D73E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD57E91F222997C300C3D73E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD57E9252229A3EF00C3D73E /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		BD9CA02F24379AF700DED04B /* ContentTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTableView.swift; sourceTree = "<group>"; };
 		BDBE50EE224440350036AE69 /* UIView+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shake.swift"; sourceTree = "<group>"; };
 		BDFD03E1222AE66300DD898B /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +67,7 @@
 				BD57E917222997C200C3D73E /* Main.storyboard */,
 				BDFD03E1222AE66300DD898B /* CustomTextField.swift */,
 				BD36CB592244113000159308 /* BackgroundView.swift */,
+				BD9CA02F24379AF700DED04B /* ContentTableView.swift */,
 				BDBE50EE224440350036AE69 /* UIView+Shake.swift */,
 				BD57E91A222997C300C3D73E /* Assets.xcassets */,
 				BD57E91C222997C300C3D73E /* LaunchScreen.storyboard */,
@@ -148,6 +151,7 @@
 				BD36CB5A2244113000159308 /* BackgroundView.swift in Sources */,
 				BDFD03E2222AE66300DD898B /* CustomTextField.swift in Sources */,
 				BDBE50EF224440350036AE69 /* UIView+Shake.swift in Sources */,
+				BD9CA03024379AF700DED04B /* ContentTableView.swift in Sources */,
 				BD57E914222997C200C3D73E /* AppDelegate.swift in Sources */,
 				BD57E9262229A3EF00C3D73E /* LogInViewController.swift in Sources */,
 			);
