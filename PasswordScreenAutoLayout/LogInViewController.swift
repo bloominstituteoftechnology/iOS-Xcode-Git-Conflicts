@@ -30,18 +30,18 @@ class LogInViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-
+        
         hideError(animate: false)
     }
-
+    
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         loginIfValidFormInput()
     }
     
-    func login(email: String, password: String) {
+    private func login(email: String, password: String) {
         print("login() email: \(email), password: \(password)")
-      
+        
         
         if email.isEmpty {
             // TODO: Verify email is of correct format (hello@example.com)
@@ -52,7 +52,7 @@ class LogInViewController: UIViewController {
         } else if password.isEmpty {
             showError(message: "Error: Password cannot be empty.",
                       forView: passwordTextField,
-                animate: true)
+                      animate: true)
             
             passwordTextField.becomeFirstResponder()
             
@@ -67,7 +67,7 @@ class LogInViewController: UIViewController {
             passwordTextField.becomeFirstResponder()
         } else { // good password
             self.hideError(animate: true)
-
+            
             // Fake a web request delay before going to next screen
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 print("Login successful!")
@@ -76,7 +76,7 @@ class LogInViewController: UIViewController {
             }
         }
     }
-
+    
     private func loginIfValidFormInput() {
         guard let email = emailTextField.text,
             let password = passwordTextField.text else { return }
@@ -86,8 +86,8 @@ class LogInViewController: UIViewController {
         
         login(email: email, password: password)
     }
-
-    func showError(message: String, forView activeView: UIView, animate: Bool) {
+    
+    private func showError(message: String, forView activeView: UIView, animate: Bool) {
         errorLabel.text = message
         if animate {
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: [.beginFromCurrentState], animations: {
@@ -99,50 +99,49 @@ class LogInViewController: UIViewController {
         }
     }
     
-func hideError(animate: Bool) {
-    errorLabel.text = ""
-    print(errorLabel)
-    if animate {
-        
-        
-        
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 10, options: [.beginFromCurrentState], animations: {
+    private func hideError(animate: Bool) {
+        errorLabel.text = ""
+        print(errorLabel)
+        if animate {
+            
+            
+            
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 10, options: [.beginFromCurrentState], animations: {
+                self.errorLabel.isHidden = true
+            })
+        } else {
             self.errorLabel.isHidden = true
-        })
-    } else {
-        self.errorLabel.isHidden = true
+        }
     }
-}
     
     // MARK: -  Keyboard notifications
-        
-    @objc func keyboardWillHide(_ notification: NSNotification) {
+    
+    @objc private func keyboardWillHide(_ notification: NSNotification) {
         scrollView.contentInset = .zero
     }
     
-    @objc func keyboardWillShow(_ notification: NSNotification) {
+    @objc private func keyboardWillShow(_ notification: NSNotification) {
         guard let endFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
-                return
+            return
         }
         didValidatePassword = false
         
         // Scroll view won't scroll if view is visible
         scrollView.scrollRectToVisible(passwordTextField.frame, animated: true)
-
+        
         let halfKeyboardHeight = -endFrame.size.height / 2
         let keyboardInset = UIEdgeInsets(top: halfKeyboardHeight, left: 0, bottom: -halfKeyboardHeight, right: 0)
         scrollView.contentInset = keyboardInset
     }
     
-    @objc func keyboardWillChangeFrame(_ notification: NSNotification) {
-        guard let endFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
-                return
-        }
-        if view.frame.height == endFrame.origin.y {
-            // keyboard is offscreen
-            view.frame.origin.y = 0
-        } else {
-            view.frame.origin.y = -endFrame.size.height / 2.0
+    @objc private func keyboardWillChangeFrame(_ notification: NSNotification) {
+        if let endFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            if view.frame.height == endFrame.origin.y {
+                // keyboard is offscreen
+                view.frame.origin.y = 0
+            } else {
+                view.frame.origin.y = -endFrame.size.height / 2.0
+            }
         }
     }
 }
