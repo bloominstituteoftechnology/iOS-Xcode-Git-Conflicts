@@ -102,7 +102,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="loginPressed:" destination="ona-sb-F8q" eventType="touchUpInside" id="oIu-WY-SBo"/>
+                                                            <action selector="loginButtonPressed:" destination="ona-sb-F8q" eventType="touchUpInside" id="oIu-WY-SBo"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
