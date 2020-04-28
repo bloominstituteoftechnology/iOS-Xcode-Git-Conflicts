@@ -39,6 +39,13 @@ class LogInViewController: UIViewController {
         loginIfValidFormInput()
     }
     
+    @IBAction func forgotPasswordButtonPressed(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let resetPasswordVC = storyboard.instantiateViewController(withIdentifier: "ResetPasswordViewController")
+        present(resetPasswordVC, animated: true)
+    }
+    
     func login(email: String, password: String) {
         print("login() email: \(email), password: \(password)")
         if email.isEmpty {
